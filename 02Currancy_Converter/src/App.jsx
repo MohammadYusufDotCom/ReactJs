@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useCurrency from "./Hook/useCurrancy";
-import { InputBox } from "./Componants/";
+import { InputBox , Footer,Header } from "./Componants/";
 import "./App.css";
 function App() {
   let [from, setFrom] = useState("usd");
@@ -29,6 +29,7 @@ function App() {
       style={{ backgroundImage: `url('https://shorturl.at/boMV6')` }}
       // style={{backgroundImage: `url('https://shorturl.at/mJS15')`}}
     >
+      <Header/>
       <div className="w-full max-w-md border rounded-lg p-5 backdrop-blur-sm ">
         <h1 className="text-opacity-0 text-center mb-4 -mt-4 text-3xl font-medium select-none">
           Currency Converter
@@ -78,8 +79,10 @@ function App() {
           </button>
         </form>
       </div>
+      <Footer/>
     </div>
-    //  <InputBox className={""} lable="This is my box"/>
+
+
   );
 }
 

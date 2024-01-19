@@ -11,14 +11,15 @@ function App() {
   let CurrancyInfo = useCurrency(from);
 
   const currencyOption = Object.keys(CurrancyInfo);
-  function convert() {
+  function convertCurrency() {
+       
     setConvertAmount((amount * CurrancyInfo[to]).toFixed(2));
   }
 
-  const swap = () => {
+   const  swap =  () => {
     setFrom(to)
     setTo(from)
-    setAmount(convertedAmount)
+    setAmount(convertedAmount);
     setConvertAmount(amount)
   }
 
@@ -35,7 +36,7 @@ function App() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            convert();
+            convertCurrency();
           }}
         >
           <div className="w-full -mb-1.5">
@@ -52,6 +53,7 @@ function App() {
             <button
               className="relative left-1/2 -translate-x-1/2  border-2 border-white rounded-md bg-blue-500 text-white px-2 py-0.5"
               onClick={swap}
+              type="button"
             >
               Swap
             </button>

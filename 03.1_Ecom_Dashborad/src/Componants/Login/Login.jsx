@@ -1,35 +1,43 @@
-import { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let [status, setStatus] = useState()
-    const navigate = useNavigate()
+  let [status, setStatus] = useState();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const auth = localStorage.getItem('user')
+     if (auth){
+        navigate('/')
+     }
+  })
+
+
   let login = async () => {
-    try{
-        let result = await fetch("http://localhost:5000/login",{
-            method:'post',
-            body: JSON.stringify({email, password}),
-            headers:{'Content-Type':"application/json"}
-        })
-
-        result.json().then(resp =>{
-            if (resp.status){
-                console.log(resp.status)
-                setStatus("Invalid username or Password")
-            } else{
-                localStorage.setItem('user',JSON.stringify(resp))
-                setStatus('')
-                console.log(resp)
-                navigate('/')
-            }
-
-        })
-    }catch(err){
-        console.log("catch");
+    try {
+      let result = await fetch("http://localhost:5000/login", {
+        method: "post",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      result.json().then((resp) => {
+        if (resp.status) {
+          console.log(resp.status);
+          setStatus("Invalid username or Password");
+        } else {
+          localStorage.setItem("user", JSON.stringify(resp));
+          setStatus("");
+          console.log(resp);
+          navigate("/");
+        }
+      });
+    } catch (err) {
+      console.log("catch");
     }
   };
+
   return (
     <form
       action="submit"
@@ -60,9 +68,7 @@ function Login() {
             className=" focus:border-[2px] rounded-lg px-4 h-10 focus:border-green-500 outline-none my-1.5 border-[1px] border-gray-300 text-center"
           />
         </div>
-        <button type="submit"
-        className=" bg-green-500 px-5 py-2 rounded-xl"
-        >
+        <button type="submit" className=" bg-green-500 px-5 py-2 rounded-xl">
           Log in
         </button>
       </div>

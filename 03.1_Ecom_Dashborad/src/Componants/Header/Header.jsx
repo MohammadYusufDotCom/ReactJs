@@ -22,7 +22,7 @@ function Header() {
     <div className="order-3 flex gap-4 ">
       {
       auth
-      ?<Link to={'Register'} className="bg-green-500 p-3 rounded-2xl " onClick={logout}>Logout</Link>
+      ?<Link to={'login'} className="bg-green-500 p-3 rounded-2xl " onClick={logout}>Logout</Link>
       :<div className="flex gap-4"><Link to={'Register'} className="bg-green-500 p-3 rounded-2xl ">Sign up</Link>
       <Link to={'login'} className="bg-green-500  p-3 rounded-2xl">Login</Link></div>
       }

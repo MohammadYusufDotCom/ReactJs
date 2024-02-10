@@ -7,7 +7,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
-import { About, Cart, Home, Login, Private, Product, Profile, Register } from "./Componants";
+import { About, Cart, Home, Login, Private, AddProduct, Profile, Register, Product } from "./Componants";
 import "./index.css";
 
 const router = createBrowserRouter(
@@ -17,7 +17,14 @@ const router = createBrowserRouter(
         <Route path="" element={<Home />} />
         <Route path="about" element={<About />}></Route>
         <Route path="cart" element={<Cart />}></Route>
-        <Route path="product" element={<Product />}></Route>
+        
+          
+          <Route path="product" element={<Product/>} />
+
+        <Route path="/addproduct" element={<AddProduct />}></Route>
+         
+     
+
         <Route path="profile" element={<Profile />}></Route>
       </Route>
         <Route path="register" element={<Register/>} />

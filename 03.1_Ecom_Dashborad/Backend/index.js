@@ -1,7 +1,8 @@
 const cros = require("cors");
 const express = require("express");
 require("./DB/config.js");
-const User = require("./DB/userModel.js");
+const User = require("./DB/UserModel.js");
+const product = require('./DB/ProductModel.js')
 const { default: mongoose } = require("mongoose");
 
 //Middleware
@@ -9,7 +10,33 @@ const app = express();
 app.use(express.json());
 app.use(cros());
 
-// Mohammad#yusuf7
+
+app.post('/registerProduct',async (req,resp)=>{
+    let result = await new product(req.body)
+    result = await result.save()
+    console.log("Body hai ye \n",req.body)
+    console.log("\nResut hai ye \n",result)
+    resp.send(result)
+});
+
+app.get('/product',(req,resp)=>{
+  product.find()
+  .then((data)=>{
+    if(data){
+      console.log(data);
+      resp.send(data)
+    }else{
+      resp.send({Result:'No data Fount'})
+    }
+  })
+})
+
+
+
+
+
+
+// For Registring new User into database 
 app.post("/register", async (req, resp) => {
   try {
     const newUser = new User(req.body);
@@ -24,6 +51,8 @@ app.post("/register", async (req, resp) => {
   }
 });
 
+
+//For log in user in existing account
 app.post("/login", async (req, resp) => {
   if (req.body.email && req.body.password) {
     const data = await User.findOne(req.body).select("-password");
@@ -41,10 +70,13 @@ app.post("/login", async (req, resp) => {
 });
 
 app.listen(5000);
+
+
+
+
 // const newUser = new User({
 //     name:"mohammad",
 //     email:"mohammd@gmail.com",
-//     contact_Number:9821649861,
 //     password:"mohammad@1234"
 // })
 // newUser.save()

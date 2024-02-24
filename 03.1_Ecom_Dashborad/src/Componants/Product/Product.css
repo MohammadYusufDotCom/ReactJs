@@ -1,6 +1,8 @@
 .list{
     padding: 5px;
-    width: 150px;
+    width: 130px;
+    /* max-width: 130px; */
+    /* width: auto; */
     border: black 1px solid;
     text-align: center;
    

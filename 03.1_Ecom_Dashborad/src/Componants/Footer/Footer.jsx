@@ -4,7 +4,7 @@ function Footer() {
   
   return (
   
-    <footer className=" w-full h-12 bg-green-900 backdrop-blur-lg bg-opacity-30 absolute bottom-0">
+    <footer className=" w-full h-12 bg-green-900 backdrop-blur-lg bg-opacity-30 mt-3 absolute bottom-0">
       <div className=" flex justify-center items-center h-full">
       &copy; Copyright to mohammad yusuf 2023
       </div>

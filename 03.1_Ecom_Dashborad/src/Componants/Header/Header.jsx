@@ -24,7 +24,7 @@ function Header() {
         <div className="order-3 flex gap-4 ">
           {auth ? 
             <div className="flex gap-2 items-center">
-              <Link to={"login"} className="bg-green-900 text-white px-3 h-9 flex items-center rounded-full font-bold">
+              <Link to={"login"} className="bg-green-900 text-white px-3 h-9 w-9 flex justify-center items-center rounded-full font-bold">
                 {JSON.parse(auth).name[0].toUpperCase()}
               </Link>
               

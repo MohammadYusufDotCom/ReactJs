@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cros());
 
-
+//Add a new product into DataBase
 app.post('/registerProduct',async (req,resp)=>{
     let result = await new product(req.body)
     result = await result.save()
@@ -19,6 +19,7 @@ app.post('/registerProduct',async (req,resp)=>{
     resp.send(result)
 });
 
+//Get all list of product from database
 app.get('/product',(req,resp)=>{
   product.find()
   .then((data)=>{
@@ -26,12 +27,52 @@ app.get('/product',(req,resp)=>{
       console.log(data);
       resp.send(data)
     }else{
-      resp.send({Result:'No data Fount'})
+      resp.send({Result:'No data Found'})
     }
   })
 })
 
+//Modify the exiting product 
+app.put("/editProduct/:_id",async(req,resp)=>{
+  try{
+  let result = await product.updateOne(
+    req.params,
+    {
+      $set: req.body
+    })
+  console.log(result)
+  resp.send(result)
+  }catch(err){
+    console.log({Status:"Error, Id should be 24 byte hexadecimal"});
+    resp.send({Status:"Error, Id should be 24 byte hexadecimal"});
+  }
+})
 
+//This is the part of modify, this is used for getting single product
+app.get('/getdata/:_id',async(req,resp)=>{
+  // const value = new mongoose.Types.ObjectId(req.params._id) //make new object ID
+  try{
+    let result =await product.findOne(req.params) //it gives me an object {_id:valueOfParams}
+    if(result){
+      console.log(result)
+      resp.send(result) 
+    }else{
+      console.log({status:"Failed, Product Not Exist"});
+      resp.send({status:"Failed, Product Not Exist"})
+    }
+  }catch(err){
+    console.log({status:"Error Id must be 24 hex character"});
+    resp.send({status:"Error Id must be 24 hex character"})
+  }
+})
+
+
+// Deleting a product 
+app.delete('/deleteproduct/:_id',async(req,resp)=>{
+    result =  await product.deleteOne(req.params)
+    console.log(result);
+    resp.send({status:result})
+})
 
 
 

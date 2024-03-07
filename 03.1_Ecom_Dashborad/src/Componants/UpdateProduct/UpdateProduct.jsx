@@ -37,7 +37,6 @@ function UpdateProduct(){
       setError(true)
       return
     }
-    console.log("hello");
     let result = await fetch(`http://localhost:5000/editProduct/${id}`,{
       method:"put",
       body:JSON.stringify({product_name,category,price,stock}),

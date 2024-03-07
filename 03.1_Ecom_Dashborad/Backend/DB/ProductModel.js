@@ -1,6 +1,5 @@
 const mongoose = require ('mongoose');
 
-
 const productSchema = new mongoose.Schema({
     product_name :{
         type:String,
@@ -16,10 +15,7 @@ const productSchema = new mongoose.Schema({
     stock:{
         type:Number
     }
-    
-
 });
-
 const product = mongoose.model('product',productSchema);
 
 module.exports = product;

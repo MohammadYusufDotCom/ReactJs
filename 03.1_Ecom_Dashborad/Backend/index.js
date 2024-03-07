@@ -66,7 +66,6 @@ app.get('/getdata/:_id',async(req,resp)=>{
   }
 })
 
-
 // Deleting a product 
 app.delete('/deleteproduct/:_id',async(req,resp)=>{
     result =  await product.deleteOne(req.params)
@@ -74,6 +73,22 @@ app.delete('/deleteproduct/:_id',async(req,resp)=>{
     resp.send({status:result})
 })
 
+// Searching using multiple method 
+app.get('/search/:element',async (req,resp)=>{
+  try{
+  let result = await product.find({
+    "$or":[
+      {product_name:{$regex: req.params.element}},
+      {category:{$regex: req.params.element}}
+    ]
+  }) 
+  console.log(result);
+  resp.send(result)
+}catch(err){
+  console.log(err+"my err");
+  resp.send(err)
+}
+})
 
 
 

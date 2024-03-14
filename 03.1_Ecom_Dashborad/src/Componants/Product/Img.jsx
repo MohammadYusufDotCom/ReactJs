@@ -10,7 +10,9 @@ function Img(prop) {
     console.log(itemId);
     let result = await fetch(`http://localhost:5000/deleteproduct/${itemId}`, {
       method: "Delete",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        authorization: JSON.parse(localStorage.getItem('auth'))
+    },
     });
     result = await result.json();
     console.log(result.status);

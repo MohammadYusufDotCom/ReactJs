@@ -15,14 +15,22 @@ function Product() {
   }, [refresh]);
 
   async function productList() {
-    let data = await fetch("http://localhost:5000/product");
+    let data = await fetch("http://localhost:5000/product",{
+      headers:{
+        authorization: JSON.parse(localStorage.getItem('auth'))
+      }
+    });
     data = await data.json();
     setProduct(data);
   }
 const searchItem = async(value)=>{
   setSearch(value)
   if(value){
-    let result = await fetch(`http://localhost:5000/search/${value}`)
+    let result = await fetch(`http://localhost:5000/search/${value}`,{
+      headers:{
+        authorization: JSON.parse(localStorage.getItem('auth'))
+      }
+    })
     result = await result.json()
     setProduct(result)
   }else{
@@ -64,7 +72,7 @@ const searchItem = async(value)=>{
                   id={currentElement._id}
                   setRefresh={setRefresh}
                   refresh={refresh}
-                  onClick={() => productList()}
+                  // onClick={() => productList} //this is now working as page will reload by use effect hook
                 />
               </li>
             </ul>

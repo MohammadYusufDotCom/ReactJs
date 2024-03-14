@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let [status, setStatus] = useState();
+  let [status, setStatus] = useState('');
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -26,10 +26,11 @@ function Login() {
         if (resp.status) {
           console.log(resp.status);
           setStatus("Invalid username or Password");
-        } else {
-          localStorage.setItem("user", JSON.stringify(resp));
+        } else if(resp.auth) {
+          localStorage.setItem('user',JSON.stringify(resp.user));
+          localStorage.setItem("auth", JSON.stringify(resp.auth));
           setStatus("");
-          console.log(resp);
+          console.log(resp.user);
           navigate("/");
         }
       });

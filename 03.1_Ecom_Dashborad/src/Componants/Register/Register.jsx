@@ -20,9 +20,9 @@ function Register() {
 
   //API call for register user
   const registeruser = async () => {
-    let result
+    let result = {}
     try {
-       result = await fetch("http://localhost:5000/register", {
+        result = await fetch("http://localhost:5000/register", {
         //call API
         method: "post",
         body: JSON.stringify({ name, email, contact_Number, password }),
@@ -31,8 +31,9 @@ function Register() {
       result = await result.json();
 
       //if data sent to database then user will navigated to the home 
-     if(result){
-      localStorage.setItem('user',JSON.stringify(result))  //local stoare data keep info of userin brouser.
+     if(result.auth){
+      localStorage.setItem('user',JSON.stringify(result.user))  //local stoare data keep info of userin brouser.
+      localStorage.setItem('auth',JSON.stringify(result.auth))  //local stoare data keep info of userin brouser.
       console.log(result);
       navigate('/')
     }

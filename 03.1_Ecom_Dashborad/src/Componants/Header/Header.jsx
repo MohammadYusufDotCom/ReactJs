@@ -26,6 +26,7 @@ function Header() {
             <div className="flex gap-2 items-center">
               <Link to={"login"} className="bg-green-900 text-white px-3 h-9 w-9 flex justify-center items-center rounded-full font-bold">
                 {JSON.parse(auth).name[0].toUpperCase()}
+                {/* {"m".toUpperCase()} */}    {/* when user and auth token has been stored together then we resolve error using this line  */}
               </Link>
               
               <Link to={"login"} onClick={logout}>

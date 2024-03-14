@@ -40,7 +40,9 @@ function UpdateProduct(){
     let result = await fetch(`http://localhost:5000/editProduct/${id}`,{
       method:"put",
       body:JSON.stringify({product_name,category,price,stock}),
-      headers:{"Content-Type":"application/json" }   
+      headers:{"Content-Type":"application/json",
+      authorization: JSON.parse(localStorage.getItem('auth'))
+     }   
     })
     result = await result.json()
     console.log(result);

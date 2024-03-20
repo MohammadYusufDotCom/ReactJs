@@ -11,7 +11,7 @@ function Img(prop) {
     let result = await fetch(`http://localhost:5000/deleteproduct/${itemId}`, {
       method: "Delete",
       headers: { "Content-Type": "application/json",
-        authorization: JSON.parse(localStorage.getItem('auth'))
+        authorization: `bearer ${JSON.parse(localStorage.getItem('auth'))}`
     },
     });
     result = await result.json();

@@ -17,7 +17,11 @@ function UpdateProduct(){
   
   async function productDetail(){
     try {
-      let data = await fetch(`http://localhost:5000/getdata/${id}`);
+      let data = await fetch(`http://localhost:5000/getdata/${id}`,{
+        headers: {
+          authorization:`bearer ${JSON.parse(localStorage.getItem('auth'))}`
+        }
+      });
       data = await data.json(); 
       
       setProductName(data.product_name)
@@ -41,7 +45,7 @@ function UpdateProduct(){
       method:"put",
       body:JSON.stringify({product_name,category,price,stock}),
       headers:{"Content-Type":"application/json",
-      authorization: JSON.parse(localStorage.getItem('auth'))
+      authorization: `bearer ${JSON.parse(localStorage.getItem('auth'))}`
      }   
     })
     result = await result.json()

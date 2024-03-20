@@ -20,7 +20,9 @@ function Product() {
     let response = await fetch('http://localhost:5000/registerProduct',{
       method: 'post',
       body: JSON.stringify({product_name, category, price, stock}),
-      headers:{'Content-Type':'application/json'}
+      headers:{'Content-Type':'application/json',
+     authorization:`bearer ${JSON.parse(localStorage.getItem('auth'))}`
+    }
     })
     response = await response.json()
     console.log(response)

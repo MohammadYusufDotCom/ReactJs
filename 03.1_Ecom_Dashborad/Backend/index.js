@@ -18,28 +18,30 @@ app.use(cros());
 
 function verification(req, resp, next) {
   let token = req.headers.authorization;
+  try{
   if (token) {
     token = token.split(' ')[1]
-    jwt.verify(token,jwtkey,(err,resp)=>{
+    console.log(token);
+    jwt.verify(token,jwtkey,(err,valid)=>{
       if(err){
-        resp.status(401).send({status:"You are unauthorized"})
+        resp.status(401).send({status:"You are unauthorized. please provide valid token."})
       }else{
-        console.log("sab thik h bhai");
-
+        console.log({status:`token verified ==>>${valid}`});
         next()
       }
-
     })
-   
   } else {
-    console.log({ status: 'user not verified' });
-    resp.status(401).send('You are unauthorized')
+    console.log({ status: 'Jwt token not find' });
+    resp.status(401).send({status:'Jwt token not find'})
+  }}catch(err){
+    console.log(err,"\n Authentication failed");
+    resp.status(401).send({status:"Authentication failed"})
   }
 }
 
 
 //Add a new product into DataBase
-app.post('/registerProduct', async (req, resp) => {
+app.post('/registerProduct', verification,async (req, resp) => {
   let result = await new product(req.body)
   result = await result.save()
   console.log("Body hai ye \n", req.body)
@@ -48,7 +50,7 @@ app.post('/registerProduct', async (req, resp) => {
 });
 
 //Get all list of product from database
-app.get('/product', (req, resp) => {
+app.get('/product', verification,(req, resp) => {
   product.find()
     .then((data) => {
       if (data) {
@@ -61,7 +63,7 @@ app.get('/product', (req, resp) => {
 })
 
 //Modify the exiting product 
-app.put("/editProduct/:_id", async (req, resp) => {
+app.put("/editProduct/:_id",verification,async (req, resp) => {
   try {
     let result = await product.updateOne(
       req.params,
@@ -77,7 +79,7 @@ app.put("/editProduct/:_id", async (req, resp) => {
 })
 
 //This is the part of modify, this is used for getting single product
-app.get('/getdata/:_id', async (req, resp) => {
+app.get('/getdata/:_id',verification,async (req, resp) => {
   // const value = new mongoose.Types.ObjectId(req.params._id) //make new object ID
   try {
     let result = await product.findOne(req.params) //it gives me an object {_id:valueOfParams}
@@ -95,14 +97,14 @@ app.get('/getdata/:_id', async (req, resp) => {
 })
 
 // Deleting a product 
-app.delete('/deleteproduct/:_id', async (req, resp) => {
+app.delete('/deleteproduct/:_id', verification, async (req, resp) => {
   result = await product.deleteOne(req.params)
   console.log(result);
   resp.send({ status: result })
 })
 
 // Searching using multiple method 
-app.get('/search/:element', async (req, resp) => {
+app.get('/search/:element',verification ,async (req, resp) => {
   try {
     let result = await product.find({
       "$or": [
@@ -120,7 +122,7 @@ app.get('/search/:element', async (req, resp) => {
 
 
 
-// For Registring a new User into database Or Sign up API
+// For Registring a new User into database Or Signup API
 app.post("/register", async (req, resp) => {
   try {
     const newUser = new User(req.body);
@@ -145,7 +147,7 @@ app.post("/register", async (req, resp) => {
 
 
 //For log in user in existing account
-app.post("/login", verification, async (req, resp) => {
+app.post("/login", async (req, resp) => {
   if (req.body.email && req.body.password) {
     const user = await User.findOne(req.body).select("-password");
     if (user) {

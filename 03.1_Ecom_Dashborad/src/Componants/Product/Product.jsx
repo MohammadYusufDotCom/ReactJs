@@ -17,7 +17,7 @@ function Product() {
   async function productList() {
     let data = await fetch("http://localhost:5000/product",{
       headers:{
-        authorization: JSON.parse(localStorage.getItem('auth'))
+        authorization: `bearer ${JSON.parse(localStorage.getItem('auth'))}`
       }
     });
     data = await data.json();
@@ -28,7 +28,7 @@ const searchItem = async(value)=>{
   if(value){
     let result = await fetch(`http://localhost:5000/search/${value}`,{
       headers:{
-        authorization: JSON.parse(localStorage.getItem('auth'))
+        authorization: `bearer ${JSON.parse(localStorage.getItem('auth'))}`
       }
     })
     result = await result.json()

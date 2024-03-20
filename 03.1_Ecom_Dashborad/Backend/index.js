@@ -7,8 +7,7 @@ const { default: mongoose } = require("mongoose");
 
 //For Json Authentication we use JWT 
 const jwt = require('jsonwebtoken')
-const jwtkey = 'E-com'
-
+const jwtkey = 'e-comm'
 
 
 //Middleware

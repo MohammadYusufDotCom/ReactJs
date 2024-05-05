@@ -1,14 +1,13 @@
-import React,{useContext} from 'react'
-import contexProvider from '../contex/contexProvider'
+import React, {useContext} from 'react'
 import Context from '../contex/contex';
 
 function Profile() {
     const {user} = useContext(Context)
 
-    if (!user) return <div>Please provide username and password</div>
+    if (!user) return <div>Please loagin</div>
   
     return (
-    <div>Weclome to the {user.userName}</div>
+    <div>Weclome  {user.userName}</div>
   );
 }
 

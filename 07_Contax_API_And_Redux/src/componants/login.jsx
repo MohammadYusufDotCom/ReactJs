@@ -9,7 +9,6 @@ function Login() {
 
   function login_form(e){
     e.preventDefault();
-    console.log("this is called ",password , userName);
     setUser({userName, password})
   }
   function setPassword_method(e){
@@ -21,8 +20,6 @@ function Login() {
 
   return (
     <>
-      <h1>Log in form</h1>
-
       <input type="text" value={userName} onChange={setUserName_method} placeholder="Username" />
       <input type="password" value={password} onChange={setPassword_method} placeholder="Password" />
       <button type="submit" onClick={login_form}>Log In</button>

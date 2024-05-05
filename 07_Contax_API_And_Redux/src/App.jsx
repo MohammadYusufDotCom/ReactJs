@@ -1,19 +1,16 @@
-
 import './App.css'
-import Login from './components/Login'
-import Profile from './components/Profile'
-import ContextProvider from './context/ContextProvider'
+import ContexProvider from './contex/contexProvider';
+import Login from './componants/Login';
+import Profile from './componants/Profile';
 
-function App() {
-  
-
+function  App() {
   return (
-    <ContextProvider>
-      <h1>React with Chai and share is important</h1>
-      <Login />
-      <Profile />
-    </ContextProvider>
+    <ContexProvider>
+      <h1>Login form</h1>
+      <Login/>
+      <Profile/>
+    </ContexProvider>
   )
 }
 
-export default App
+export default App;

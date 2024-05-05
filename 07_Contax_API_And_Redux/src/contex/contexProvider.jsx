@@ -1,13 +1,13 @@
 import React, { useState }  from "react";
 import context from "./contex";
 
-const contexProvider = ({children})=>{
+const ContexProvider = ({children})=>{
     const [user,setUser] = useState(null)
 return(
-    <context.Provider>
+    <context.Provider value={{user, setUser}}>
     {children}
     </context.Provider>
 )
 }
 
-export default contexProvider;
+export default ContexProvider;

@@ -1,11 +1,19 @@
-import { useState } from 'react'
+
+import './App.css'
+import Login from './components/Login'
+import Profile from './components/Profile'
+import ContextProvider from './context/ContextProvider'
 
 function App() {
-  return (
-
-    <h1>this is API contex</h1>
-  )
   
+
+  return (
+    <ContextProvider>
+      <h1>React with Chai and share is important</h1>
+      <Login />
+      <Profile />
+    </ContextProvider>
+  )
 }
 
 export default App

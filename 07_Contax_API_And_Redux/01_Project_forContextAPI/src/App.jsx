@@ -15,9 +15,9 @@ function App() {
   return (
     <ConutContextProvider>
       <Component />
-      <Button />
-      <Button />
-      <Button />
+      <Button value={"add"}/>
+      <Button value={"multiple"}/>
+      <Button value={"jump"}/>
     </ConutContextProvider>
   );
 }

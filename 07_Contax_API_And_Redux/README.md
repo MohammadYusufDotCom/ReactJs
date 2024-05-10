@@ -1,8 +1,8 @@
-# React + Vite
+# Context API 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In this project we have used a context API for incrementing and decrementing the the value of count,
+with the using of buttons.
 
-Currently, two official plugins are available:
+buttons are located in the another componant and caount is reprensting is another componant but we can access both at the same time, this is why we are using the context API. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## we can also use Redux or redux-tool-kit or zustand or any other libraby to manage the state management

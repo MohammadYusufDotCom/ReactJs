@@ -1,8 +1,9 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import { CartContext } from '../Context/Context'
 
 function Items(props) {
-    const {cart,setCart} = useContext(CartContext)
+    // const {cart, setCart} = CartContext;
+    const {cart, setCart} = CartContext();
     console.log(cart);
   return (
     <div>

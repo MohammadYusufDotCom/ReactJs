@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { CartContext } from "../Context/Context";
 import Items from "./Items";
 
 function Cart() {
-  const value = useContext(CartContext);
+//   const value = useContext(CartContext);
+  const value = CartContext();
   const total = value.cart.reduce((a,b)=>(a+b.price),0)
   return (
     <div >

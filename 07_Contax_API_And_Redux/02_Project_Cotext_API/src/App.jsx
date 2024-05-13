@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Cart from './Component/Cart'
 import { CartContextProvider } from './Context/Context'
+import Cart from './Component/Cart'
 import Items from './Component/Items'
 
 function App() {

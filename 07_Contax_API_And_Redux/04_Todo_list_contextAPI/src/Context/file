@@ -1,0 +1,40 @@
+#!/bin/bash
+URL="http://192.168.135.10:8080/api/middleware/actuator/health"
+OUTPUT_FILE="curloutput.txt"
+# Loop to run the curl command every 3 seconds
+while true
+do
+  # Get the current timestamp
+  TIMESTAMP=$(date + "%Y-%m-%d %H:%M:%S")
+  echo  `[$TIMESTAMP]` >> $OUTPUT_FILE | curl $URL >> $OUTPUT_FILE
+  # Run the curl command and write its output to the new file
+  #curl $URL >> $OUTPUT_FILE
+
+  # Wait for 3 seconds before the next iteration
+  sleep 2
+done
+
+
+###############################################################
+#!/bin/bash
+
+URL="http://192.168.135.10:8080/api/middleware/actuator/health"
+OUTPUT_FILE="curloutput.txt"
+
+# Loop to run the curl command every 3 seconds
+while true
+do
+  # Get the current timestamp
+  TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+
+  # Run the curl command and process its output line by line
+  #curl  $URL | while IFS= read -r line
+  line= curl $URL
+  #do
+    # Add the timestamp to the beginning of each line and append to the output file
+    echo "[$TIMESTAMP] $line" >> $OUTPUT_FILE
+  #done
+
+  # Wait for 3 seconds before the next iteration
+  sleep 2
+done

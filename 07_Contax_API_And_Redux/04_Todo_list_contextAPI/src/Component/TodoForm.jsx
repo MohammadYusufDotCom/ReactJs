@@ -5,13 +5,15 @@ function TodoForm() {
     const {addTodo} = useTodo()
     const [newTodo, setNewTodo] = React.useState('')
 
-    const submitTodo=(e)=>{
+    function submitTodo(e){
         e.preventDefault()
+        if(!newTodo) return;
         addTodo({title:newTodo,completed:false})
+        setNewTodo('');
     }
     return (
         <form 
-        onSubmit={(e)=>submitTodo(e)}
+        onSubmit={submitTodo}
         className="flex">
             <input
                 type="text"

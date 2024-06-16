@@ -10,7 +10,7 @@ function App() {
     setTodos((prev)=>[{id: Date.now(),...todo},...prev])
   }
   const updateTodo=(id,todo)=>{
-    setTodos((prev)=>prev.map((prevTodo)=>prevTodo.id === id ? {...preTodo,title:todo} : prevTodo))
+    setTodos((prev)=>prev.map((prevTodo)=>prevTodo.id === id ? {...prevTodo,title:todo} : prevTodo))
   }
   const deleteTodo=(id)=>{
     setTodos((prev)=>prev.filter((prevTodo)=> prevTodo.id !== id))
@@ -36,7 +36,11 @@ useEffect(()=>{
         </h1>
         <div className="mb-4"><TodoForm/></div>
         <div className="flex flex-wrap gap-y-3">
-          <TodoItem/>
+          {todos.map((todo)=>(
+            <div key={todo.id} className="w-full">
+              <TodoItem todo= {todo}/>
+            </div>
+            ))}
         </div>
       </div>
     </div>

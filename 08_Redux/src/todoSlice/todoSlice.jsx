@@ -3,7 +3,7 @@ import { createSlice,nanoid } from "@reduxjs/toolkit";
 const initialState = {
     todos :[{
         id: 1,
-        text :"Demo todo",
+        text :"Demo todo by Mohammad Yusuf",
         completed : false 
     }]}
 const todoSlice = createSlice({

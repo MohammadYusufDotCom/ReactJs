@@ -1,10 +1,19 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux" 
-import { removeTodo } from '../todoSlice/todoSlice'
+import { removeTodo, toggleTodo, valuesInEditTodoHandle } from '../todoSlice/todoSlice'
 
 function Todo() {
   const todos = useSelector(state => state.todos)
-  const dispatch = useDispatch(removeTodo)
+  const todoEditable = useSelector(state => state.todoEditable)
+  const valuesInEdit = useSelector(state => state.valueInEditTodo)
+  const dispatch = useDispatch()
+
+
+  const updateTodo =(text,id)=>{
+    dispatch(toggleTodo())
+    console.log(text,id);
+    dispatch(valuesInEditTodoHandle({id,text}))
+  } 
 
   return (
     <>
@@ -12,10 +21,17 @@ function Todo() {
     <ul className="list-none ">
         {todos.map((todo) => (
           <li
-            className="mt-4 flex justify-between items-center bg-slate-800 px-4 py-2 rounded-xl"
+            className={`mt-4 flex justify-between items-center ${valuesInEdit.id == todo.id?'bg-slate-500': 'bg-slate-800'} px-4 py-2 rounded-xl`}
             key={todo.id}
           >
-            <div className='text-white'>{todo.text}</div>
+            <div className={`text-white`}>{todo.text}</div>
+            <div className='flex gap-2 '>
+            <button className={`text-white ${todoEditable? 'bg-red-300':'bg-red-500 hover:bg-red-600'} border-0 py-1 px-4 focus:outline-none  rounded text-md`}
+            onClick={()=>updateTodo(todo.text,todo.id)}
+            disabled={todoEditable}
+            >
+              Edit
+              </button>
             <button
              onClick={() => dispatch(removeTodo(todo.id))}
               className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
@@ -35,6 +51,7 @@ function Todo() {
                 />
               </svg>
             </button>
+            </div>
           </li>
         ))}
       </ul>

@@ -34,7 +34,8 @@ function Todo() {
               </button>
             <button
              onClick={() => dispatch(removeTodo(todo.id))}
-              className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
+              className={`text-white ${todoEditable? 'bg-red-300':'bg-red-500 hover:bg-red-600'} border-0 py-1 px-4 focus:outline-none  rounded text-md`}
+            disabled={todoEditable}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

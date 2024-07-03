@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom React</title>
+</head>
+<style>
+#outer{
+    margin: auto;
+    height: 200px;
+    width: 180px;
+    border-radius: 11px;
+    cursor: pointer;
+  background-image: linear-gradient(180deg,red , orange,yellow);
+}
+#inner{
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 11px;
+    height: 200px;  
+    width: 180px;
+    background-color: rgb(0, 0, 0);
+    transition: 0.30s;
+}
+#outer:hover #inner{
+
+    scale: 0.97;
+    
+}
+#outer:hover {
+    /* box-shadow: 10px 10px 10px 10px  rgb(48, 168, 215); */
+    -webkit-box-shadow: 0 0 25px #1c8ee0fe;
+        box-shadow: 0 0 25px #1c8ee0fe;
+}
+
+</style>
+<body id="root" style="background-color: #212121; color:aliceblue">
+    <div id="outer">
+        <div id="inner">
+<!-- <button id="inner"></button> -->
+        </div>
+    </div>
+    <!-- <script type="module" src="custom.js"></script> -->
+</body>
+
+</html>

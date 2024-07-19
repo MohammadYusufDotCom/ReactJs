@@ -1,8 +1,19 @@
-# React + Vite
+# Full fledge application for testing 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In this we will use below library
 
-Currently, two official plugins are available:
+ 1 vite 
+ 2 react
+ 3 tailwind
+ 4 react router dom
+ 5 react hook form
+ 6 react query
+ 7 react hot toast
+ 8 react icons
+ 9 appwrite
+ 10 redux 
+ 11 redux persist
+ 12 tiny mce
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+Auther : Mohammad Yusuf

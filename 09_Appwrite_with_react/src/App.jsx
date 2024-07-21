@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 import { useForm } from 'react-hook-form';
+
+const hostname = import.meta.env.VITE_HOSTNAME
 
 function App() {
   const {
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <form onSubmit={handleSubmit(submit)}>
-      <h1 className='text-2xl '>Hello welcoe to the yusuf page</h1>
+      <h1 className='text-4xl '>Hello welcoe to the yusuf page {hostname}</h1>
       <input {...register('firstName') } placeholder='Name' className='border-2 rounded-2xl px-3' />
       <input {...register('lastName', { required: true })} placeholder='Last Name' className='border-2 rounded-2xl px-3' />
       {errors.lastName && <p>Last name is required.</p>}
